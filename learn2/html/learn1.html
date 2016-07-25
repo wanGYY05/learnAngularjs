@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$scope里面的apply方法</title>
+    <script type="text/javascript" src="../../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="firstController" ng-click="show()">
+        {{name}}
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app=angular.module("myApp",[]);
+
+    app.controller('firstController',function ($scope,$timeout) {
+        $scope.name='请大声的告诉我，yy打球帅不？';
+
+        $timeout(function () {
+            $scope.name='帅';
+        },2000);
+
+        setTimeout(function () {
+            console.log('setTime开始运行啦');
+//            $scope.name='hi';(这样写是不会达到效果的)
+            $scope.$apply(function () {
+                $scope.name='de掉渣';
+            });
+//            (这样写可以)
+        },2700);
+
+        $scope.show=function () {
+            $scope.name='我点了这里一下';
+        }
+
+    });
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$scope多控制器单独作用域</title>
+    <script type="text/javascript" src="../../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="firstController">
+        {{name}}
+    </div>
+    <div ng-controller="secondController">
+        {{name}}
+    </div>
+
+</div>
+<script type="text/javascript">
+    var app=angular.module("myApp",[]);
+
+    app.controller('firstController',function ($scope) {
+        $scope.name='王岩焱';
+    });
+
+    app.controller('secondController',function ($scope) {
+        $scope.name='wyy';
+    });
+</script>
+</body>
+</html>

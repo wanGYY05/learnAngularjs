@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$scope里的$watch方法</title>
+    <script type="text/javascript" src="../../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="scalerController">
+        <p>单价：<input type="text" ng-model="scaler.unitPrice"></p>
+        <p>数量：<input type="text" ng-model="scaler.num"></p>
+        <p>费用：<span>{{sum()|currency:'￥'}}</span></p>
+        <p>运费：<span>{{scaler.freght|currency:'￥'}}</span></p>
+        <p>总额：<span>{{sum()+scaler.freght|currency:'￥'}}</span></p>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    var app=angular.module("myApp",[]);
+
+    app.controller('scalerController',function ($scope) {
+        $scope.scaler={
+            unitPrice:5,
+            num:1,
+            freght:10
+        };
+
+        $scope.sum=function () {
+            return $scope.scaler.unitPrice*$scope.scaler.num;
+        };
+
+        $scope.$watch($scope.sum,function (newVal,oldVal) {
+            $scope.scaler.freght= newVal>=100 ? 0:10;
+        });
+
+        $scope.$watch('scaler.unitPrice',function (newVal,oldVal) {
+//            console.log(newVal);
+//            console.log(oldVal);
+        });
+    });
+
+
+</script>
+
+</html>

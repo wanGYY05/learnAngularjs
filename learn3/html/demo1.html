@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angularjs工具方法</title>
+    <script type="text/javascript" src="../../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="firstController">
+        {{name}}
+        {{isArray}}
+        {{NAME}}
+        {{eq}}
+    </div>
+</div>
+
+<script type="text/javascript">
+    var app = angular.module("myApp", []);
+
+    app.controller("firstController", function ($scope) {
+
+
+
+//        //判断是否为数组
+//         $scope.name = 'zhangsan';
+//         $scope.arr = [1, 2, 3];
+//         $scope.isArray = angular.isArray($scope.name);
+//         $scope.isArray=angular.isArray($scope.arr);
+//
+//        //将字母转换为大写
+//        $scope.NAME = angular.uppercase($scope.name);
+//
+//        //判断相等函数
+//        $scope.a = '11';
+//        $scope.b = '22';
+//        $scope.eq = angular.equals($scope.a,$scope.b);
+//
+//        //继承
+//        $scope.c={name:'lisi'};
+//        $scope.d={age:'30'};
+//        angular.extend($scope.d,$scope.c);
+//        console.log($scope.d);
+
+//        //json对象转换为字符串
+//        var json={"name":"wyy","age":"22"};
+//        console.log(json);
+//        $scope.json=angular.toJson(json);
+//        console.log($scope.json);
+//        $scope.json=angular.toJson(json,true);
+//        console.log($scope.json);
+
+//        //fromJson
+//        var json='{"name":"wyy","age":"22"}';
+//        console.log(json);
+//        $scope.json=angular.fromJson(json);
+//        console.log($scope.json);
+
+//        //copy方法
+//        $scope.c = {name: 'lisi'};
+//        $scope.d = {age: '30'};
+//        angular.copy($scope.c,$scope.d);
+//        console.log($scope.c);
+//        console.log($scope.d);
+
+//        //forEach的用法
+//        var json={"name":"wyy","age":"22","sex":"男"};
+//        var arr=[];
+//        angular.forEach(json,function (val,key) {
+//            console.log(val);
+//        });
+//        angular.forEach(json,function (val,key) {
+//            this.push(key+'-'+val);
+//        },arr);
+//        console.log(arr);
+
+//        //bind的用法
+////        var self={name:'张三'};
+////        var f=angular.bind(self,function (age) {
+////            $scope.info=this.name+' is '+age;
+////            console.log($scope.info);
+////        });
+////        f(30);
+//        var fun=angular.bind(self,function (age) {
+//            $scope.info=this.name+' is '+age;
+//            console.log($scope.info);
+//        },20);
+//        fun();
+
+
+    });
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+

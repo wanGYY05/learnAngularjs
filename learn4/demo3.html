@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时器</title>
+    <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="myApp">
+        <div ng-controller="firstController">
+            <input type="button" ng-value="text" ng-disabled="isDisabled">
+            <input type="text" value="{{text}}" ng-readonly="isDisabled">
+            <input type="checkbox" value="{{text}}" ng-checked="isDisabled">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var app=angular.module("myApp",[]);
+
+        app.controller("firstController",function ($scope,$interval) {
+            $scope.isDisabled=true;
+            var t=5;
+            $scope.text=t +'秒';
+
+            var time=$interval(function () {
+                t--;
+                $scope.text=t +'秒';
+                console.log(t);
+                if (t === 0){
+                    $interval.cancel(time);
+                    $scope.isDisabled=false;
+                    $scope.text='现在可以点击了';
+                }
+            },1000);
+        })
+    </script>
+
+</body>
+
+</html>

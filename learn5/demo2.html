@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../node_modules/angular/angular-sanitize.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="firstController">
+        <div ng-bind="text"></div>
+        <!--绑定html-->
+        <div ng-bind-html="text"></div>
+        <div ng-bind-html="detailContent"></div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript"> 
+    var app=angular.module("myApp",['ngSanitize']);
+    
+    app.controller("firstController",function ($scope,$sce) {
+        $scope.text="<h2>此时h2标签没有被解析，所以要用ng-bind-html</h2>";
+
+        $scope
+    })
+</script>
+
+</html>

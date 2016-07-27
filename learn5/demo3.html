@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="firstController">
+        <!--绑定html-->
+        <div ng-bind-html="detailContent()"></div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript"> 
+    var app=angular.module("myApp",[]);
+    
+    app.controller("firstController",function ($scope,$sce) {
+
+        $scope.detailContent=function () {
+            return $sce.trustAsHtml('绑定html的另一种方法');
+        }
+    })
+</script>
+
+</html>

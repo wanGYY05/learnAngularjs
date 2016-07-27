@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="firstController">
+       <div ng-repeat="innerlist in list track by $index" ng-init="outlist=$index">
+           <!--用ng-init是因为repeat套用了一次，如果不用init，$index两次取出的会是一个值-->
+           <div ng-repeat="value in innerlist track by $index" ng-init="inlist=$index">
+               <span>list[{{outlist}}][{{inlist}}]:{{value}}</span>
+           </div>
+       </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript"> 
+    var app=angular.module("myApp",[]);
+    app.controller("firstController",function ($scope) {
+       $scope.list=[[1,2],[3,4]];
+    });
+</script>
+</html>

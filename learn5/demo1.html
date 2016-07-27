@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+
+    <style>
+        .red {
+            background: red;
+            color: blue;
+        }
+
+        .yellow {
+            background: yellow
+        }
+    </style>
+
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="firstController">
+        <div ng-cloak ng-class="{yellow:s}">{{text}}</div>
+        <div ng-cloak ng-class="{red:true}">{{text}}</div>
+        <div ng-cloak ng-class="{{sClass}}">{{text}}</div>
+        <div ng-cloak ng-style="{color:'red'}">{{text}}</div>
+        <div ng-cloak ng-style="{{style}}">{{text}}</div>
+
+        <a href="{{url}}">百度</a>
+        <a ng-href="{{url}}">百度</a>
+
+        <img src="{{src}}" alt="图片不显示时显示的文字" title="百度logo">
+        <img ng-src="{{src}}" alt="图片不显示时显示的文字" ng-attr-title="{{text}}">
+
+        <div ng-show="s">你好</div>
+        <div ng-if="s">你好</div>
+
+        <!--ng-switch和on结合的例子-->
+        <div ng-switch on="s">
+            <p ng-switch-default>默认的效果（不定义s的状态）</p>
+            <p ng-switch-when="true">true切换的效果</p>
+            <p ng-switch-when="false">false切换的效果</p>
+        </div>
+
+        <div ng-switch on="select">
+            <p ng-switch-when="default">default div</p>
+            <p ng-switch-when="red">red div</p>
+            <p ng-switch-when="blue">blue div</p>
+
+            <!--ng-open和details结合的例子-->
+            <input type="checkbox" ng-model="open">
+            <details ng-open="open">
+                <summary>一句话总结</summary>
+                <p>好玩不好玩不好玩不好玩不好玩不好玩不好玩不好玩不好玩不</p>
+            </details>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    var app = angular.module("myApp", []);
+
+    app.controller("firstController", function ($scope) {
+        $scope.text = 'yy中文网';
+
+        $scope.s = true;
+
+        $scope.sClass = "{yellow:true,red:true}";
+
+        $scope.url = 'http://www.baidu.com';
+        $scope.src = 'http://www.baidu.com/img/bd_logo1.png';
+
+        $scope.swich = ['default', 'red', 'blue'];
+        $scope.select = $scope.swich[1];
+
+    });
+</script>
+
+</html>

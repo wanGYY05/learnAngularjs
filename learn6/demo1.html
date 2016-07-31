@@ -8,8 +8,17 @@
 <body>
 <div ng-app="myApp"> 
     <div ng-controller="firstController">
-        
+        <div ng-bind="text"></div>
+        <div ng-include="test"></div>
+
+        <div ng-include="id1"></div>
+
     </div>
+
+    <script type="text/ng-template" id="id1.html">
+        content of the template;
+    </script>
+
 </div>
 </body>
 
@@ -17,7 +26,11 @@
     var app=angular.module("myApp",[]);
     
     app.controller("firstController",function ($scope) {
-        
+        $scope.text='1234567890';
+
+        $scope.test='test.html';
+
+        $scope.id1='id1.html';
     });
 </script>
 

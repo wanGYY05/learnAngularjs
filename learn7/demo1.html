@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+</head>
+
+
+
+
+
+
+
+
+
+
+<body>
+<div ng-app="myApp">
+    <div ng-controller="firstController">
+        <p>在输入框中尝试输入：</p>
+        <p>姓名：<input type="text" ng-model="firstName"></p>
+        {{firstName | uppercase}}
+        {{lastName}}
+        <br>
+        {{price | currency:"￥"}}
+        <br>
+        {{json | json}}
+        <br>
+        {{ 0000000000000 | date:"yyyy-MM-dd hh:mm:ss" }}
+        <br>
+        {{1.232432 | number:1}}
+        <br>
+        {{1232 | number}}
+        <br>
+        <p>输入过滤:</p>
+        <p><input type="text" ng-model="name"></p>
+        <ul>
+            <li ng-repeat="x in persons | filter:name | orderBy:'age'"><!--此处不能加track by $index否则报错-->
+                {{(x.name | uppercase) + ',' + x.id + ',' + x.age}}
+            </li>
+        </ul>
+        <p>name筛选:</p>
+        <ul>
+            <li ng-repeat="x in persons | filter:{'name':name} | orderBy:'age'"><!--此处不能加track by $index否则报错-->
+                {{(x.name | uppercase) + ',' + x.id + ',' + x.age}}
+            </li>
+        </ul>
+
+        <!--{{ [{"age": 20,"id": 10,"name": "iphone"},-->
+        <!--{"age": 12,"id": 11,"name": "sunm xing"},-->
+        <!--{"age": 44,"id": 12,"name": "test abc"} ] | filter:{'name':'iphone'} }}-->
+
+        {{persons| filter:{'name':'iphone'} }}<!--最后两个-->
+        <br>
+        {{'i like play basketball' | limitTo:12}}
+        <br>
+        {{'i like play basketball' | limitTo:-10}}
+        <br>
+        {{persons | orderBy:'id':true}}
+        <br>
+        {{persons | orderBy:'id'}}
+
+
+
+
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    var app=angular.module("myApp",[]);
+
+    app.controller("firstController",function ($scope,$filter) {
+        $scope.price=30;
+
+        $scope.persons=[
+            {"age": 20,"id": 10,"name": "iphone"},
+            {"age": 12,"id": 11,"name": "sunxing"},
+            {"age": 44,"id": 12,"name": "nibaba"}
+        ];
+
+        $scope.price=123456789;
+        $scope.nam='zhangsan';
+
+        $scope.inam=$filter('uppercase')($scope.nam);
+//        $scope.iprice=$filter('currency')($scope.price);
+        $scope.iprice=$filter('currency')($scope.price,'RMB: ');
+
+        console.log($scope.inam);
+        console.log($scope.iprice);
+
+        $scope.tim=$filter('date')('123456789','hh');
+        console.log($scope.tim);
+
+
+
+
+
+        })
+</script>
+
+</html>

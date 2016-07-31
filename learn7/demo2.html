@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="demo2.js"></script>
+</head>
+<body>
+<div ng-app="myApp"> 
+    <div ng-controller="firstController">
+        {{name | rHello}}
+        <br>
+        {{name | rHello:1:2}}
+        <br>
+        {{name | rJs}}
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    var app=angular.module("myApp",['myFilter']);
+    
+    app.controller("firstController",function ($scope) {
+        $scope.name='hello Angularjs';
+
+    });
+    
+    app.filter("rHello",function () {
+        return function (input,n1,n2) {
+            console.log(input);
+            console.log(n1);
+            console.log(n2);
+            return input.replace(/hello/,'你好');
+        }
+    });
+
+
+
+</script>
+
+</html>
